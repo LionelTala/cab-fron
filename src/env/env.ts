@@ -1,7 +1,6 @@
 export const env = {
-  production: false,
-  apiUrl: 'cabbackend.alwaysdata.net/api',
-  sanctumUrl: 'cabbackend.alwaysdata.net/sanctum',
+apiUrl: 'https://cabbackend.alwaysdata.net/api/',
+sanctumUrl: 'https://cabbackend.alwaysdata.net/api/',
   pusher: {
     key: 'lionelskl@90',              // ⭐ Copier depuis .env (PUSHER_APP_KEY)
     cluster: 'mt1',                 // ⭐ Copier depuis .env (PUSHER_APP_CLUSTER)
