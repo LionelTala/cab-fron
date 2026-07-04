@@ -1,8 +1,8 @@
 export const env = {
 
   production: false,
-  apiUrl: 'http://localhost:8000/api',
-  sanctumUrl: 'http://localhost:8000/sanctum',
+  apiUrl: 'https://cabbackend.alwaysdata.net/api',
+  sanctumUrl: 'https://cabbackend.alwaysdata.net/sanctum',
 
 
   pusher: {
