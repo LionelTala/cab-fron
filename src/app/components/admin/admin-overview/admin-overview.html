@@ -1,1 +1,53 @@
-<p>admin-overview works!</p>
+<!-- src/app/admin/pages/dashboard/dashboard.component.html -->
+
+<div class="p-4 md:p-6">
+
+  <!-- En-tête -->
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold text-slate-900">📊 Vue d'ensemble</h1>
+    <p class="text-sm text-slate-500">Tableau de bord de l'administration</p>
+  </div>
+
+  <!-- 5 cartes statistiques -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+      <p class="text-2xl font-extrabold text-cab-blue">{{ stats.totalEtudiants }}</p>
+      <p class="text-xs text-slate-500 font-medium">👥 Étudiants</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+      <p class="text-2xl font-extrabold text-cab-blue">{{ stats.totalFormations }}</p>
+      <p class="text-xs text-slate-500 font-medium">🎓 Formations</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+      <p class="text-2xl font-extrabold text-cab-blue">{{ stats.totalVagues }}</p>
+      <p class="text-xs text-slate-500 font-medium">🌊 Vagues</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+      <p class="text-2xl font-extrabold text-cab-blue">{{ stats.candidaturesRecues }}</p>
+      <p class="text-xs text-slate-500 font-medium">📋 Candidatures reçues</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+      <p class="text-2xl font-extrabold text-cab-red">{{ stats.candidaturesEnAttente }}</p>
+      <p class="text-xs text-slate-500 font-medium">⏳ En attente</p>
+    </div>
+  </div>
+
+  <!-- Dernières activités -->
+  <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+    <h2 class="text-sm font-semibold text-slate-700 mb-3">🕐 Dernières activités</h2>
+    <div class="space-y-2">
+      @for (activite of dernieresActivites; track activite) {
+        <div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
+          <div>
+            <p class="text-sm font-medium text-slate-800">{{ activite.action }}</p>
+            <p class="text-xs text-slate-500">{{ activite.details }}</p>
+          </div>
+          <span class="text-xs text-slate-400">{{ activite.date }}</span>
+        </div>
+      } @empty {
+        <p class="text-sm text-slate-400 text-center py-4">Aucune activité récente</p>
+      }
+    </div>
+  </div>
+
+</div>
