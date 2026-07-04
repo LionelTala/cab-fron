@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /formations/
+Allow: /campus/
+Allow: /contact/
+
+Disallow: /login
+Disallow: /app/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /student/
+Disallow: /profile/
+
+Sitemap: https://cab-informatique.com/sitemap.xml

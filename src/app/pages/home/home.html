@@ -1,0 +1,728 @@
+<!-- ============================================================ -->
+<!-- LOADER                                                        -->
+<!-- ============================================================ -->
+@if (isLoading) {
+  <div class="fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-500" aria-hidden="true">
+    <div class="text-center max-w-md px-8">
+      <img
+        src="assets/images/logo.jpeg"
+        alt="CAB Informatique"
+        class="w-20 h-20 mx-auto mb-6 object-contain"
+        loading="lazy"
+      />
+      <div class="w-full h-1 bg-gray-200 rounded-full overflow-hidden mb-4" role="progressbar" [attr.aria-valuenow]="loaderProgress" aria-valuemin="0" aria-valuemax="100">
+        <div class="h-full bg-gradient-cab rounded-full transition-all duration-300" [style.width]="loaderProgress + '%'"></div>
+      </div>
+      <p class="text-sm text-gray-500 font-medium tracking-wider">Notre désir, Votre Professionnalisme</p>
+    </div>
+  </div>
+}
+
+<!-- ============================================================ -->
+<!-- PAGE PRINCIPALE                                               -->
+<!-- ============================================================ -->
+<main class="font-inter bg-white text-gray-900" role="main">
+
+  <!-- ============================================================ -->
+  <!-- SKIP LINK                                                    -->
+  <!-- ============================================================ -->
+  <a href="#contenu-principal" class="sr-only focus:not-sr-only focus:absolute focus:top-16 focus:left-4 focus:z-[9999] focus:bg-white focus:p-4 focus:rounded-xl focus:shadow-lg focus:text-cab-blue">
+    Aller au contenu principal
+  </a>
+
+  <!-- ============================================================ -->
+  <!-- NAVIGATION                                                   -->
+  <!-- ============================================================ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+       [class.bg-white/95]="isScrolled"
+       [class.backdrop-blur-md]="isScrolled"
+       [class.shadow-sm]="isScrolled"
+       [class.py-4]="!isScrolled"
+       [class.py-3]="isScrolled"
+       role="navigation"
+       aria-label="Navigation principale">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+
+      <!-- Logo CAB avec image -->
+      <a href="/" class="flex items-center gap-3 no-underline" aria-label="CAB Informatique - Accueil">
+        <img
+          src="assets/images/logo.jpeg"
+          alt="CAB Informatique"
+          class="h-12 w-auto object-contain"
+          loading="lazy"
+        />
+        <span class="text-xl font-black tracking-tight hidden sm:inline">
+          <span class="text-[#1a56db]">C</span>
+          <span class="text-[#d21f2f] transform scale-110 inline-block font-extrabold">A</span>
+          <span class="text-[#1a56db]">B</span>
+          <span class="text-xs font-semibold text-gray-400 tracking-[2px] ml-1">INFORMATIQUE</span>
+        </span>
+      </a>
+
+      <!-- Navigation Desktop -->
+      <ul class="hidden md:flex items-center gap-8 list-none" role="menubar">
+        <li role="none"><a href="#formations" role="menuitem" (click)="scrollTo('formations')" class="text-sm font-medium text-gray-600 hover:text-[#1a56db] transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-[#1a56db] after:transition-all after:duration-300 hover:after:w-full">Formations</a></li>
+        <li role="none"><a href="#avantages" role="menuitem" (click)="scrollTo('avantages')" class="text-sm font-medium text-gray-600 hover:text-[#1a56db] transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-[#1a56db] after:transition-all after:duration-300 hover:after:w-full">Pourquoi CAB</a></li>
+        <li role="none"><a href="#campus" role="menuitem" (click)="scrollTo('campus')" class="text-sm font-medium text-gray-600 hover:text-[#1a56db] transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-[#1a56db] after:transition-all after:duration-300 hover:after:w-full">Campus</a></li>
+        <li role="none"><a href="#certification" role="menuitem" (click)="scrollTo('certification')" class="text-sm font-medium text-gray-600 hover:text-[#1a56db] transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-[#1a56db] after:transition-all after:duration-300 hover:after:w-full">Certification</a></li>
+        <li role="none"><a href="#contact" role="menuitem" (click)="scrollTo('contact')" class="text-sm font-medium text-gray-600 hover:text-[#1a56db] transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-[#1a56db] after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <button (click)="openLoginModal()" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border-2 border-gray-200 rounded-full text-sm font-semibold text-gray-600 hover:border-[#1a56db] hover:text-[#1a56db] hover:bg-blue-50 transition-all cursor-pointer">
+          <span aria-hidden="true">🔑</span> Connexion
+        </button>
+        <a href="#certification" (click)="scrollTo('certification')" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a56db] text-white rounded-full text-sm font-semibold hover:bg-[#0d2a63] hover:-translate-y-0.5 hover:shadow-lg transition-all cursor-pointer no-underline">
+          <span aria-hidden="true">📝</span> Certification
+        </a>
+        <button (click)="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1 bg-none border-none cursor-pointer" aria-label="Ouvrir le menu mobile">
+          <span class="block w-6 h-0.5 bg-gray-900 rounded-full transition-all" aria-hidden="true"></span>
+          <span class="block w-6 h-0.5 bg-gray-900 rounded-full transition-all" aria-hidden="true"></span>
+          <span class="block w-6 h-0.5 bg-gray-900 rounded-full transition-all" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Menu Mobile -->
+    @if (isMobileMenuOpen) {
+      <div class="md:hidden bg-white border-t border-gray-100 shadow-lg" role="menu" aria-label="Menu mobile">
+        <ul class="flex flex-col p-4 space-y-2 list-none">
+          <li role="none"><a href="#formations" role="menuitem" (click)="scrollTo('formations')" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">Formations</a></li>
+          <li role="none"><a href="#avantages" role="menuitem" (click)="scrollTo('avantages')" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">Pourquoi CAB</a></li>
+          <li role="none"><a href="#campus" role="menuitem" (click)="scrollTo('campus')" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">Campus</a></li>
+          <li role="none"><a href="#certification" role="menuitem" (click)="scrollTo('certification')" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">Certification</a></li>
+          <li role="none"><a href="#contact" role="menuitem" (click)="scrollTo('contact')" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">Contact</a></li>
+          <li role="none"><button (click)="openLoginModal(); closeMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#1a56db] transition-colors">🔑 Connexion</button></li>
+          <li role="none"><a href="#certification" role="menuitem" (click)="scrollTo('certification')" class="block px-4 py-2.5 bg-[#1a56db] text-white rounded-xl text-sm font-semibold text-center hover:bg-[#0d2a63] transition-colors">📝 Certification</a></li>
+        </ul>
+      </div>
+    }
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- ID pour le skip link                                         -->
+  <!-- ============================================================ -->
+  <div id="contenu-principal"></div>
+    <!-- ============================================================ -->
+  <!-- HERO AVEC IMAGE (img1.jpeg)                                 -->
+  <!-- ============================================================ -->
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden" aria-labelledby="hero-title">
+
+    <div class="absolute inset-0 z-0">
+      <img
+        src="assets/images/img1.jpeg"
+        alt="CAB Informatique - Formation professionnelle"
+        class="w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-hero"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <nav aria-label="Fil d'Ariane" class="text-xs text-white/60 mb-6">
+        <ol class="flex items-center gap-2">
+          <li><a href="/" class="hover:text-white transition-colors">Accueil</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80" aria-current="page">CAB Informatique</li>
+        </ol>
+      </nav>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Texte -->
+        <div class="space-y-6 animate-slide-up" data-reveal>
+          <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-semibold border border-white/10">
+            <img
+              src="assets/images/logo.jpeg"
+              alt="CAB"
+              class="h-6 w-auto object-contain"
+              loading="lazy"
+            />
+            <span>Rentrée académique 2026-2027</span>
+          </div>
+
+          <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white">
+            Formez-vous <br />
+            <span class="text-white/90">aujourd'hui</span> <br />
+            pour <span class="text-white/90">réussir demain</span>
+          </h1>
+
+          <p class="text-lg text-white/80 max-w-lg">
+            <strong class="text-white">CAB Informatique</strong> forme aux métiers de l'informatique depuis <strong class="text-white">22 ans</strong>.
+            Découvrez nos <strong class="text-white">formations professionnelles</strong> à Douala, Yaoundé et Bafoussam.
+          </p>
+
+          <div class="flex items-center gap-8" aria-label="Statistiques clés">
+            <div class="text-center">
+              <span class="block text-3xl font-extrabold text-white" aria-label="22 ans">22+</span>
+              <span class="text-xs text-white/60 font-medium">Ans d'expérience</span>
+            </div>
+            <div class="w-px h-10 bg-white/20" aria-hidden="true"></div>
+            <div class="text-center">
+              <span class="block text-3xl font-extrabold text-white" aria-label="6 filières">6</span>
+              <span class="text-xs text-white/60 font-medium">Filières</span>
+            </div>
+            <div class="w-px h-10 bg-white/20" aria-hidden="true"></div>
+            <div class="text-center">
+              <span class="block text-3xl font-extrabold text-white" aria-label="3 campus">3</span>
+              <span class="text-xs text-white/60 font-medium">Campus</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#certification" (click)="scrollTo('certification')" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#1a56db] rounded-full font-semibold hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg transition-all cursor-pointer no-underline">
+              <span aria-hidden="true">📝</span> Certification en ligne
+            </a>
+            <a href="#formations" (click)="scrollTo('formations')" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 hover:border-white/60 transition-all cursor-pointer no-underline">
+              <span aria-hidden="true">📚</span> Découvrir
+            </a>
+          </div>
+        </div>
+
+        <!-- Carte Hero -->
+        <div class="relative" data-reveal data-reveal-delay="2">
+          <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 animate-fade-in">
+            <div class="text-center">
+              <img
+                src="assets/images/logo.jpeg"
+                alt="CAB Informatique"
+                class="w-24 h-24 mx-auto mb-4 object-contain rounded-full border-4 border-[#1a56db] p-2 bg-white"
+                loading="lazy"
+              />
+              <h2 class="text-2xl font-bold text-gray-900">Rentrée académique</h2>
+              <p class="text-xl font-semibold text-[#d21f2f] mt-2">Lundi 05 Octobre 2026</p>
+              <div class="flex flex-wrap justify-center gap-2 mt-6">
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">CEP</span>
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">BEPC</span>
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">PROBATOIRE</span>
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">BACCALAURÉAT</span>
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">Étudiants</span>
+                <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-semibold">Professionnels</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+    <!-- ============================================================ -->
+  <!-- FORMATIONS SECTION (img2.jpeg en fond)                       -->
+  <!-- ============================================================ -->
+  <section id="formations" class="py-20 bg-gray-50" aria-labelledby="formations-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+        <span class="inline-block px-4 py-1.5 bg-blue-100 text-[#1a56db] rounded-full text-xs font-semibold tracking-wider mb-4" aria-hidden="true">🎯 NOS FORMATIONS</span>
+        <h2 id="formations-title" class="text-3xl md:text-4xl font-extrabold text-gray-900">
+          Des formations <span class="text-[#1a56db]">professionnelles</span> pour tous
+        </h2>
+        <p class="text-gray-500 mt-4">Découvrez nos <strong>6 filières</strong> qui vous préparent aux métiers d'avenir</p>
+      </div>
+
+      <!-- Image d'ambiance -->
+      <div class="mb-10 rounded-2xl overflow-hidden shadow-md" data-reveal>
+        <img
+          src="assets/images/img2.jpeg"
+          alt="Formations CAB Informatique"
+          class="w-full h-48 md:h-64 object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (formation of formations; track formation.id) {
+          <article class="formation-card formation-card--{{ formation.accent }} bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-reveal [attr.data-reveal-delay]="formation.id + 1">
+            <div class="flex items-start justify-between mb-4">
+              <div class="icon-badge" [class.icon-badge--red]="formation.accent === 'red'">
+                @switch (formation.icon) {
+                  @case ('secretariat') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h6"/><path d="M8 16h4"/></svg> }
+                  @case ('comptable') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M12 10v4"/><path d="M8 10v4"/><path d="M16 10v4"/><path d="M2 10h20"/></svg> }
+                  @case ('logistique') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h20"/><path d="M4 17v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7"/><path d="M8 17v-3h8v3"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg> }
+                  @case ('infographie') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/><path d="M3 12h18"/><path d="M12 3a12 12 0 0 0 0 18"/><path d="M12 3a12 12 0 0 1 0 18"/></svg> }
+                  @case ('reseaux') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h4"/><path d="M12 4v16"/></svg> }
+                  @case ('videosurveillance') { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><path d="M22 10l-4 2.5V11l4-2.5v1.5z"/><circle cx="8" cy="12" r="2"/></svg> }
+                  @default { <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg> }
+                }
+              </div>
+              <span class="px-3 py-1 bg-blue-50 text-[#1a56db] rounded-full text-xs font-bold">{{ formation.price }}</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">{{ formation.title }}</h3>
+            <p class="text-sm text-gray-500 mb-3">{{ formation.duree }}</p>
+            <p class="text-sm text-gray-600 mb-4 line-clamp-2">{{ formation.resume }}</p>
+            <div class="flex gap-2 mb-4">
+              @for (tag of formation.tags; track tag) {
+                <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs font-medium">{{ tag }}</span>
+              }
+            </div>
+            <button (click)="openModal(formation.id)" class="w-full py-2.5 border-2 border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:border-[#1a56db] hover:text-[#1a56db] hover:bg-blue-50 transition-all cursor-pointer">
+              <span aria-hidden="true">🔍</span> Voir les détails
+            </button>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+    <!-- ============================================================ -->
+  <!-- POURQUOI CAB AVEC IMAGE (img3.jpeg)                          -->
+  <!-- ============================================================ -->
+  <section id="avantages" class="py-20 bg-white" aria-labelledby="avantages-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div data-reveal>
+          <span class="inline-block px-4 py-1.5 bg-red-100 text-[#d21f2f] rounded-full text-xs font-semibold tracking-wider mb-4" aria-hidden="true">💪 POURQUOI CAB</span>
+          <h2 id="avantages-title" class="text-3xl md:text-4xl font-extrabold text-gray-900">
+            22 ans d'<span class="text-[#1a56db]">excellence</span> à votre service
+          </h2>
+          <p class="text-gray-500 mt-4">Découvrez pourquoi CAB Informatique est le choix de confiance pour votre formation professionnelle.</p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-8">
+            <div class="flex items-start gap-3"><div class="icon-badge w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">100% Pratique</h3><p class="text-xs text-gray-500">Formation orientée métier</p></div></div>
+            <div class="flex items-start gap-3"><div class="icon-badge icon-badge--red w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">Formateurs qualifiés</h3><p class="text-xs text-gray-500">Experts expérimentés</p></div></div>
+            <div class="flex items-start gap-3"><div class="icon-badge w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">Salles équipées</h3><p class="text-xs text-gray-500">Matériel moderne</p></div></div>
+            <div class="flex items-start gap-3"><div class="icon-badge icon-badge--red w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">Horaires flexibles</h3><p class="text-xs text-gray-500">Jour ou soir</p></div></div>
+            <div class="flex items-start gap-3"><div class="icon-badge w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h4"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">Diplôme professionnel</h3><p class="text-xs text-gray-500">Qualification reconnue</p></div></div>
+            <div class="flex items-start gap-3"><div class="icon-badge icon-badge--red w-10 h-10 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h3 class="font-bold text-gray-900 text-sm">Insertion professionnelle</h3><p class="text-xs text-gray-500">Accompagnement vers l'emploi</p></div></div>
+          </div>
+        </div>
+
+        <div class="relative" data-reveal data-reveal-delay="2">
+          <img
+            src="assets/images/img3.jpeg"
+            alt="Salle de formation CAB Informatique"
+            class="rounded-2xl shadow-xl w-full object-cover h-[400px]"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-4 -right-4 bg-[#1a56db] text-white p-4 rounded-2xl shadow-lg flex items-center gap-3">
+            <img
+              src="assets/images/logo.jpeg"
+              alt="CAB"
+              class="h-10 w-auto object-contain"
+              loading="lazy"
+            />
+            <div>
+              <span class="text-2xl font-extrabold block leading-none">22</span>
+              <span class="text-xs font-medium">Ans d'expérience</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- BANDE STATS                                                  -->
+  <!-- ============================================================ -->
+  <section class="relative py-12 bg-[#0a1f4d] overflow-hidden" aria-label="Chiffres clés">
+    <div class="absolute inset-0 opacity-5 flex items-center justify-center" aria-hidden="true">
+      <img
+        src="assets/images/logo.jpeg"
+        alt="CAB"
+        class="h-40 w-auto object-contain opacity-10"
+        loading="lazy"
+      />
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+        <div><span class="block text-3xl md:text-4xl font-extrabold">22+</span><span class="text-sm text-white/70">Ans d'expérience</span></div>
+        <div><span class="block text-3xl md:text-4xl font-extrabold">6</span><span class="text-sm text-white/70">Filières</span></div>
+        <div><span class="block text-3xl md:text-4xl font-extrabold">3</span><span class="text-sm text-white/70">Campus</span></div>
+        <div><span class="block text-3xl md:text-4xl font-extrabold">100%</span><span class="text-sm text-white/70">Formation pratique</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CAMPUS AVEC IMAGES (img4.jpeg)                              -->
+  <!-- ============================================================ -->
+  <section id="campus" class="py-20 bg-gray-50" aria-labelledby="campus-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+        <span class="inline-block px-4 py-1.5 bg-blue-100 text-[#1a56db] rounded-full text-xs font-semibold tracking-wider mb-4" aria-hidden="true">📍 NOS CAMPUS</span>
+        <h2 id="campus-title" class="text-3xl md:text-4xl font-extrabold text-gray-900">
+          3 villes, <span class="text-[#1a56db]">3 campus</span> pour vous former
+        </h2>
+      </div>
+
+      <div class="mb-10 rounded-2xl overflow-hidden shadow-md" data-reveal>
+        <img
+          src="assets/images/img4.jpeg"
+          alt="Campus CAB Informatique"
+          class="w-full h-48 md:h-64 object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        @for (campus of campuses; track campus.ville) {
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-reveal>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-[#1a56db] rounded-full text-xs font-bold">{{ campus.ville }}</span>
+                <span class="text-sm font-semibold text-gray-700">{{ campus.nom }}</span>
+              </div>
+              <address class="not-italic space-y-2 text-sm text-gray-600">
+                <p>📍 {{ campus.adresse }}</p>
+                @for (tel of campus.tels; track tel) {
+                  <p>📞 <a [href]="'tel:' + tel.replace(/\s/g, '')" class="hover:text-[#1a56db] transition-colors">{{ tel }}</a></p>
+                }
+                <p><a [href]="campus.mapsUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[#1a56db] hover:underline text-xs font-medium">🗺️ Voir sur Google Maps</a></p>
+              </address>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+<!-- ============================================================ -->
+<!-- CERTIFICATION EN LIGNE - FORMULAIRE DE CANDIDATURE           -->
+<!-- ============================================================ -->
+<section id="certification" class="py-20 bg-white" aria-labelledby="certification-title">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
+      <span class="inline-block px-4 py-1.5 bg-red-100 text-[#d21f2f] rounded-full text-xs font-semibold tracking-wider mb-4" aria-hidden="true">🎓 CERTIFICATION EN LIGNE</span>
+      <h2 id="certification-title" class="text-3xl md:text-4xl font-extrabold text-gray-900">
+        Passez votre <span class="text-[#1a56db]">certification</span> en ligne
+      </h2>
+      <p class="text-gray-500 mt-4">Obtenez un certificat reconnu et boostez votre carrière professionnelle !</p>
+      <div class="mt-6 inline-flex items-center gap-4 px-6 py-3 bg-[#0a1f4d] text-white rounded-2xl">
+        <span class="text-2xl font-black">CAB</span>
+        <span class="text-xs font-medium">Déjà 20 ANS</span>
+      </div>
+    </div>
+
+    <!-- Image d'ambiance -->
+    <div class="mb-10 rounded-2xl overflow-hidden shadow-md" data-reveal>
+      <img
+        src="assets/images/img5.jpeg"
+        alt="Certification en ligne CAB Informatique"
+        class="w-full h-48 md:h-56 object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm" data-reveal>
+
+      <!-- Filières concernées -->
+      <div class="mb-8">
+        <h3 class="text-sm font-semibold text-gray-700 mb-3">📋 Filières concernées :</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Secrétariat Bureautique</span>
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Secrétariat Comptable</span>
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Comptabilité Informatisée</span>
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Fiscalité</span>
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Maintenance Informatique</span>
+          <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-xs font-medium border border-blue-100">Réseau et Télécommunication</span>
+        </div>
+      </div>
+
+      <form (ngSubmit)="onCandidatureSubmit()" #candidatureForm="ngForm" class="space-y-6">
+
+        <!-- Ligne 1 : Nom + Prénom -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="nom" class="block text-sm font-semibold text-gray-700 mb-1.5">Nom <span class="text-[#d21f2f]">*</span></label>
+            <input
+              type="text"
+              id="nom"
+              [(ngModel)]="candidature.nom"
+              name="nom"
+              required
+              placeholder="Votre nom"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+            />
+          </div>
+          <div>
+            <label for="prenom" class="block text-sm font-semibold text-gray-700 mb-1.5">Prénom <span class="text-[#d21f2f]">*</span></label>
+            <input
+              type="text"
+              id="prenom"
+              [(ngModel)]="candidature.prenom"
+              name="prenom"
+              required
+              placeholder="Votre prénom"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+            />
+          </div>
+        </div>
+
+        <!-- Ligne 2 : Email + Téléphone -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email <span class="text-[#d21f2f]">*</span></label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="candidature.email"
+              name="email"
+              required
+              placeholder="exemple@gmail.com"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+            />
+          </div>
+          <div>
+            <label for="telephone" class="block text-sm font-semibold text-gray-700 mb-1.5">Téléphone <span class="text-[#d21f2f]">*</span></label>
+            <input
+              type="tel"
+              id="telephone"
+              [(ngModel)]="candidature.telephone"
+              name="telephone"
+              required
+              placeholder="Ex: 690 66 62 45"
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+            />
+          </div>
+        </div>
+
+        <!-- Ligne 3 : Formation (dynamique) + Niveau -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <!-- ⭐ Vérifie que c'est bien formation_id -->
+          <select
+            id="formation"
+            [(ngModel)]="candidature.formation_id"
+            name="formation"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+          >
+            <option value="">-- Sélectionnez une formation --</option>
+            @if (formationsLoading) {
+              <option value="" disabled>⏳ Chargement...</option>
+            }
+            @for (formation of formationsList; track formation.id) {
+              <option [value]="formation.id">{{ formation.title }}</option>
+            }
+          </select>
+          </div>
+          <div>
+            <label for="niveau" class="block text-sm font-semibold text-gray-700 mb-1.5">Niveau scolaire <span class="text-[#d21f2f]">*</span></label>
+            <select
+              id="niveau"
+              [(ngModel)]="candidature.niveau"
+              name="niveau"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all"
+            >
+              <option value="">-- Sélectionnez --</option>
+              <option value="CEP">CEP</option>
+              <option value="BEPC">BEPC</option>
+              <option value="PROBATOIRE">Probatoire</option>
+              <option value="BAC">Baccalauréat</option>
+              <option value="BAC+2">BAC+2</option>
+              <option value="LICENCE">Licence</option>
+              <option value="MASTER">Master ou plus</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5">Message (optionnel)</label>
+          <textarea
+            id="message"
+            [(ngModel)]="candidature.message"
+            name="message"
+            rows="4"
+            placeholder="Votre message..."
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1a56db] focus:border-[#1a56db] bg-white transition-all resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button
+          type="submit"
+          [disabled]="candidatureLoading"
+          class="w-full bg-[#1a56db] hover:bg-[#0d2a63] text-white font-semibold py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+        >
+          @if (candidatureLoading) {
+            <span>⏳ Envoi en cours...</span>
+          } @else {
+            <span>📩 Postuler à la certification</span>
+          }
+        </button>
+
+        <!-- ⭐ MESSAGES SOUS LE BOUTON -->
+        @if (candidatureSuccess && candidatureSuccessMessage) {
+          <div class="mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-sm animate-fade-in">
+            <div class="flex items-start gap-3">
+              <span class="text-xl" aria-hidden="true">🎉</span>
+              <div>
+                <p class="font-semibold">{{ candidatureSuccessMessage }}</p>
+                <p class="text-xs text-emerald-600 mt-1">📩 Nous vous recontacterons par email ou WhatsApp sous 48h.</p>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (candidatureError) {
+          <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm animate-fade-in">
+            <div class="flex items-start gap-3">
+              <span class="text-xl" aria-hidden="true">⚠️</span>
+              <div>
+                <p>{{ candidatureError }}</p>
+                <p class="text-xs text-red-600 mt-1">Veuillez corriger les champs ci-dessus et réessayer.</p>
+              </div>
+            </div>
+          </div>
+        }
+
+        <p class="text-center text-xs text-gray-400 mt-2">* Champs obligatoires. Nous vous recontacterons sous 48h pour valider votre inscription.</p>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+    <!-- ============================================================ -->
+  <!-- CTA FINAL                                                    -->
+  <!-- ============================================================ -->
+  <section id="contact" class="py-20 bg-gradient-to-r from-[#0d2a63] to-[#1a56db]" aria-labelledby="cta-title">
+    <div class="max-w-3xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-4 py-1.5 bg-white/20 text-white rounded-full text-xs font-semibold tracking-wider mb-4" aria-hidden="true">🔥 INSCRIPTIONS OUVERTES</span>
+      <h2 id="cta-title" class="text-3xl md:text-4xl font-extrabold text-white">
+        Prêt à <span class="underline decoration-4 decoration-white/30">construire</span> votre avenir ?
+      </h2>
+      <p class="text-white/80 text-lg mt-4 max-w-lg mx-auto">Les places sont limitées. Réservez votre place dès maintenant !</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <a [href]="'tel:' + telPrincipal.replace(/\+/g, '')" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#1a56db] rounded-full font-semibold hover:bg-gray-100 hover:-translate-y-0.5 transition-all no-underline">📞 {{ telPrincipal }}</a>
+        <a [href]="'https://wa.me/' + whatsappNumber" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-green-600 rounded-full font-semibold hover:bg-gray-100 hover:-translate-y-0.5 transition-all no-underline">💬 {{ whatsappNumber }}</a>
+        <a [href]="'mailto:' + emailContact" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#d21f2f] rounded-full font-semibold hover:bg-gray-100 hover:-translate-y-0.5 transition-all no-underline">✉️ {{ emailContact }}</a>
+      </div>
+      <a [href]="whatsappLink()" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 mt-8 bg-white text-[#1a56db] rounded-full font-bold hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-2xl transition-all no-underline">🔥 Je réserve ma place</a>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                       -->
+  <!-- ============================================================ -->
+  <footer class="bg-gray-900 text-gray-400 py-12" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div>
+          <a href="/" class="flex items-center gap-3 no-underline" aria-label="CAB Informatique - Accueil">
+            <img
+              src="assets/images/logo.jpeg"
+              alt="CAB Informatique"
+              class="h-12 w-auto object-contain"
+              loading="lazy"
+            />
+            <span class="text-xl font-black tracking-tight hidden sm:inline">
+              <span class="text-[#1a56db]">C</span>
+              <span class="text-[#d21f2f] transform scale-110 inline-block font-extrabold">A</span>
+              <span class="text-[#1a56db]">B</span>
+              <span class="text-xs font-semibold text-gray-500 tracking-[2px] ml-1">INFORMATIQUE</span>
+            </span>
+          </a>
+          <p class="text-sm mt-2">Notre désir, Votre Professionnalisme</p>
+          <p class="text-xs text-gray-600 mt-1">22 ans d'expérience</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Liens rapides</h4>
+          <ul class="space-y-2 text-sm list-none p-0">
+            <li><a href="#formations" (click)="scrollTo('formations')" class="hover:text-white transition-colors no-underline">Nos formations</a></li>
+            <li><a href="#avantages" (click)="scrollTo('avantages')" class="hover:text-white transition-colors no-underline">Pourquoi CAB</a></li>
+            <li><a href="#campus" (click)="scrollTo('campus')" class="hover:text-white transition-colors no-underline">Nos campus</a></li>
+            <li><a href="#certification" (click)="scrollTo('certification')" class="hover:text-white transition-colors no-underline">Certification en ligne</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Contact</h4>
+          <ul class="space-y-2 text-sm list-none p-0">
+            <li><a [href]="'tel:' + telPrincipal.replace(/\+/g, '')" class="hover:text-white transition-colors no-underline">📞 {{ telPrincipal }}</a></li>
+            <li><a [href]="'https://wa.me/' + whatsappNumber" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors no-underline">💬 {{ whatsappNumber }}</a></li>
+            <li><a [href]="'mailto:' + emailContact" class="hover:text-white transition-colors no-underline">✉️ {{ emailContact }}</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Nos villes</h4>
+          <ul class="space-y-2 text-sm list-none p-0">
+            @for (campus of campuses; track campus.ville) {
+              <li class="text-gray-400">📍 {{ campus.ville }}</li>
+            }
+          </ul>
+        </div>
+
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-xs text-gray-600">
+        <p>&copy; {{ currentYear }} <strong>CAB Informatique</strong>. Tous droits réservés.</p>
+        <p class="mt-1">Conçu avec ❤️ pour la formation professionnelle au Cameroun</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- MODAL FORMATION - Ordre : Résumé → Programme → Débouchés    -->
+  <!-- ============================================================ -->
+  @if (selectedFormation !== null && selectedFormationData) {
+    <div class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" (click)="closeModal()" role="dialog" aria-modal="true" [attr.aria-label]="selectedFormationData.title + ' - Détails de la formation'">
+      <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" (click)="$event.stopPropagation()">
+        <div class="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 rounded-t-3xl flex items-center justify-between z-10">
+          <div class="flex items-center gap-3">
+            <div class="icon-badge w-12 h-12" [class.icon-badge--red]="selectedFormationData.accent === 'red'">
+              @switch (selectedFormationData.icon) {
+                @case ('secretariat') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h6"/><path d="M8 16h4"/></svg> }
+                @case ('comptable') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M12 10v4"/><path d="M8 10v4"/><path d="M16 10v4"/><path d="M2 10h20"/></svg> }
+                @case ('logistique') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h20"/><path d="M4 17v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7"/><path d="M8 17v-3h8v3"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg> }
+                @case ('infographie') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18"/><path d="M3 12h18"/><path d="M12 3a12 12 0 0 0 0 18"/><path d="M12 3a12 12 0 0 1 0 18"/></svg> }
+                @case ('reseaux') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h4"/><path d="M12 4v16"/></svg> }
+                @case ('videosurveillance') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><path d="M22 10l-4 2.5V11l4-2.5v1.5z"/><circle cx="8" cy="12" r="2"/></svg> }
+                @default { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg> }
+              }
+            </div>
+            <h2 class="text-xl font-bold text-gray-900">{{ selectedFormationData.title }}</h2>
+          </div>
+          <button (click)="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+        </div>
+        <div class="p-6 space-y-6">
+          <!-- Résumé (en premier) -->
+          <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl">
+            <h3 class="font-bold text-[#1a56db] text-sm mb-2">📌 Résumé</h3>
+            <p class="text-sm text-gray-700">{{ selectedFormationData.resume }}</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-gray-900 mb-3">📋 Programme</h3>
+            <ul class="grid grid-cols-1 gap-2 list-none p-0">
+              @for (item of selectedFormationData.programme; track item) {
+                <li class="flex items-start gap-2 text-sm text-gray-600"><span class="text-[#1a56db] mt-0.5">▸</span> {{ item }}</li>
+              }
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-3">🎯 Débouchés</h3>
+            <div class="flex flex-wrap gap-2">
+              @for (item of selectedFormationData.debouches; track item) {
+                <span class="px-3 py-1.5 bg-blue-50 text-[#1a56db] rounded-full text-sm font-medium">{{ item }}</span>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-100 px-6 py-4 rounded-b-3xl flex flex-col sm:flex-row gap-3">
+          <a [href]="whatsappLink(selectedFormationData.title)" target="_blank" rel="noopener noreferrer" class="flex-1 text-center px-6 py-3 bg-[#1a56db] text-white rounded-xl font-semibold hover:bg-[#0d2a63] transition-all no-underline">🔥 Je m'inscris</a>
+          <button (click)="closeModal()" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 transition-all cursor-pointer">Fermer</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- ============================================================ -->
+  <!-- LOGIN MODAL                                                  -->
+  <!-- ============================================================ -->
+  @if (isLoginModalOpen) {
+    <app-login-modal (closeModal)="closeLoginModal()"></app-login-modal>
+  }
+
+</main>
